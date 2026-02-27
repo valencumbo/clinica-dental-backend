@@ -21,4 +21,5 @@ El proyecto aplica principios de separación de responsabilidades:
 - **Turnos:** `GET /api/appointments` | `POST /api/appointments`
 
 ## Despliegue
-- **URL API:** [PEGAR_AQUÍ_TU_URL_DE_VERCEL_O_RENDER]
+
+- **URL API:** [clinica-dental-backend.vercel.app]
