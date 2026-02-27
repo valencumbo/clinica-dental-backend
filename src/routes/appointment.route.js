@@ -15,4 +15,10 @@ router.get('/patient/:patientId', AppointmentController.getByPatient);
 // Cambiar el estado de un turno
 router.patch('/:id/status', AppointmentController.updateStatus);
 
+// editar 
+router.put('/:id', AppointmentController.update); 
+
+// eliminar
+router.delete('/:id', AppointmentController.delete); 
+
 export default router;

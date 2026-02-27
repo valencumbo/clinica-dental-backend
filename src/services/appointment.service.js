@@ -1,12 +1,13 @@
 import AppointmentRepository from '../repositories/appointment.repository.js';
-import userRepository from '../repositories/user.repository.js';
+// Cambiamos el userRepository por tu modelo de Patient
+import Patient from '../models/Patient.model.js'; 
 import TreatmentRepository from '../repositories/treatment.repository.js';
 
 class AppointmentService {
     
     // Crear un turno
     async createAppointment(data) {
-        const patientExists = await userRepository.findById(data.patient);
+        const patientExists = await Patient.findById(data.patient);
         if (!patientExists) {
             throw new Error("El paciente no existe en la base de datos");
         }
@@ -42,6 +43,20 @@ class AppointmentService {
             throw new Error("Turno no encontrado");
         }
         return updated;
+    }
+
+    // Editar turno
+    async updateAppointment(id, data) {
+        const updated = await AppointmentRepository.update(id, data);
+        if (!updated) throw new Error("Turno no encontrado");
+        return updated;
+    }
+
+    // Eliminar turno
+    async deleteAppointment(id) {
+        const deleted = await AppointmentRepository.delete(id);
+        if (!deleted) throw new Error("Turno no encontrado");
+        return deleted;
     }
 }
 
