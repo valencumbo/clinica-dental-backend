@@ -4,6 +4,7 @@ import { connectMongoDB } from "./config/mongoDB.config.js";
 import authRouter from "./routes/auth.router.js";
 import treatmentRouter from "./routes/treatment.route.js";
 import appointmentRouter from "./routes/appointment.route.js";
+import patientRouter from './routes/patient.route.js';
 
 // Conectar a la base de datos
 connectMongoDB();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRouter);
 app.use("/api/treatments", treatmentRouter);
 app.use("/api/appointments", appointmentRouter);
+app.use('/api/patients', patientRouter);
 
 // Levantar el servidor
 const PORT = process.env.PORT || 8080;
