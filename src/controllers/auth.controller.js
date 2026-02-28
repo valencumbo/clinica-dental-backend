@@ -33,25 +33,31 @@ class AuthController {
                 } */
             )
 
-            await mail_transporter.sendMail(
-                {
-                    from: ENVIRONMENT.GMAIL_USERNAME,
-                    to: email,
-                    subject: 'Verifica tu email',
-                    html: `
-                    <h1>Bienvenido ${username}</h1>
-                    <p>Necesitamos que verifiques tu mail para poder agendar turnos en la clínica.</p>
-                    <p>Haz click en "Verificar" para activar tu cuenta:</p>
-                    
-                    <a href='${ENVIRONMENT.URL_BACKEND}/api/auth/verify-email?verification_email_token=${verification_email_token}' style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:5px;">
-                        Verificar mi cuenta
-                    </a>
-                    
-                    <br><br>
-                    <span>Si desconoces este registro, desestima este mail.</span>
-                    `
-                }
-            )
+            try {
+                await mail_transporter.sendMail(
+                    {
+                        from: ENVIRONMENT.GMAIL_USERNAME,
+                        to: email,
+                        subject: 'Verifica tu email',
+                        html: `
+                        <h1>Bienvenido ${username}</h1>
+                        <p>Necesitamos que verifiques tu mail para poder agendar turnos en la clínica.</p>
+                        <p>Haz click en "Verificar" para activar tu cuenta:</p>
+                        
+                        <a href='${ENVIRONMENT.URL_BACKEND}/api/auth/verify-email?verification_email_token=${verification_email_token}' style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:5px;">
+                            Verificar mi cuenta
+                        </a>
+                        
+                        <br><br>
+                        <span>Si desconoces este registro, desestima este mail.</span>
+                        `
+                    }
+                )
+                console.log('✅ Correo de verificación enviado exitosamente a:', email)
+            } catch (errorMail) {
+                console.error('❌ Error al enviar correo de verificación:', errorMail)
+                throw new ServerError('Error al enviar el correo de verificación. Por favor, intenta más tarde.', 500)
+            }
 
             return response.json({
                 message: 'Usuario creado exitosamente',
