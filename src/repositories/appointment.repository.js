@@ -24,7 +24,7 @@ class AppointmentRepository {
     async updateStatus(id, status) {
         return await Appointment.findByIdAndUpdate(id, { status }, { new: true });
     }
-    
+
     // Actualizar un turno completo
     async update(id, updateData) {
         return await Appointment.findByIdAndUpdate(id, updateData, { new: true });
@@ -34,6 +34,11 @@ class AppointmentRepository {
     async delete(id) {
         return await Appointment.findByIdAndDelete(id);
     }
+
+    async findById(id) {
+        return await Appointment.findById(id).populate('patient').populate('treatment');
+    }
+
 }
 
 export default new AppointmentRepository();

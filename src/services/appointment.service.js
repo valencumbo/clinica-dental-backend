@@ -58,6 +58,16 @@ class AppointmentService {
         if (!deleted) throw new Error("Turno no encontrado");
         return deleted;
     }
+
+    async getAppointmentById(id) {
+        const appointment = await AppointmentRepository.findById(id);
+        
+        if (!appointment) {
+            throw new Error("Turno no encontrado");
+        }
+        
+        return appointment;
+    }
 }
 
 export default new AppointmentService();

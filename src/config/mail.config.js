@@ -11,10 +11,4 @@ const mail_transporter = nodemailer.createTransport({
     }
 });
 
-mail_transporter.verify().then(() => {
-    console.log("✅ Nodemailer conectado a Gmail correctamente");
-}).catch((error) => {
-    console.error("❌ Error de conexión Nodemailer:", error);
-});
-
 export default mail_transporter;

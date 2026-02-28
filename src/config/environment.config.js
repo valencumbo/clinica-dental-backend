@@ -9,7 +9,8 @@ const ENVIRONMENT = {
     GMAIL_USERNAME: process.env.GMAIL_USERNAME,
     GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
     URL_FRONTEND: process.env.URL_FRONTEND,
-    URL_BACKEND: process.env.URL_BACKEND
+    URL_BACKEND: process.env.URL_BACKEND,
+    RESEND_API_KEY: process.env.RESEND_API_KEY
 }
 
 export default ENVIRONMENT

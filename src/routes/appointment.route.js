@@ -9,6 +9,8 @@ router.post('/', AppointmentController.create);
 // Ver todos los turnos
 router.get('/', AppointmentController.getAll);
 
+router.get('/:id', AppointmentController.getById);
+
 // Ver los turnos de un paciente especifico
 router.get('/patient/:patientId', AppointmentController.getByPatient);
 

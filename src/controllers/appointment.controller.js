@@ -26,6 +26,24 @@ class AppointmentController {
         }
     }
 
+    async getById(req, res) {
+        try {
+            const { id } = req.params;
+            const appointment = await AppointmentService.getAppointmentById(id);
+            
+            if (!appointment) {
+                return res.status(404).json({ message: "Turno no encontrado" });
+            }
+
+            res.status(200).json({ 
+                message: "Turno encontrado", 
+                data: appointment 
+            });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
     async getByPatient(req, res) {
         try {
             const { patientId } = req.params;
